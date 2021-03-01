@@ -11,10 +11,6 @@
   </head>
     
     <body>
-      <form method="post">
-          <!-- <label>Vacantie</label> -->
-          <input type="text" name="vacantie" id="litepicker" />
-      </form>
     <div class="main-nav">
         <ul class="nav">
           <li class="name">Petya Katsarova</li>
@@ -40,7 +36,7 @@
     <?php 
     // include 'play.php';
      include 'datatransfer.php';
-     include 'databases.php';
+    // include 'registration_form/registration.php';
     ?>
     </div>   
     </body>    

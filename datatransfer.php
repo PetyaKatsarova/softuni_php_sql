@@ -1,9 +1,7 @@
 <?php
-  var_dump($_POST);
-if (isset($_GET["getdata"])) {
-    //////////////////////////////////////////////
+  
+  if (isset($_GET["getdata"])) {
     // PHP page intended for Javascript to read //
-    //////////////////////////////////////////////
     $data = Array(
       "testing"=> Array(1=>"2", 3=>"4"),
       "example"=> Array("is this thing on?","Hello world!"),
@@ -16,14 +14,14 @@ if (isset($_GET["getdata"])) {
     }
     //echo json_encode($data,JSON_PRETTY_PRINT); //makes it easier for humans to read, but makes the data transfer larger (use when testing)
     echo json_encode($data);  //use in production
-    //$siteoptions["dolayout"] = false; //use this on the actual website to remove the styling
-}
-else {
-  //////////////////////////////
-  // Page intended for humans //
-  //////////////////////////////petya
-    echo 'Post["data"] was not set.';
-  
+    die();
+    //$siteoptions["nolayout"] = true; //use this on the actual website to remove the styling
+  } else {
+    //////////////////////////////
+    // Page intended for humans //
+    //////////////////////////////
+    echo "no post['data'].";
+  }
 ?>
 <style>
   .output {
@@ -48,21 +46,21 @@ else {
   //library
   //we should probably move this to the common module at one point >_>
   var http = {
-      getpost: function(type,url,data,callback,errorCallback) {
-          var xhr = new XMLHttpRequest();
-          xhr.open(type, url, true);
-          if (type == "POST") { xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); }
+    getpost: function(type,url,data,callback,errorCallback) {
+      var xhr = new XMLHttpRequest();
+      xhr.open(type, url, true);
+      if (type == "POST") { xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); }
 
-          if (errorCallback) { xhr.timeout = 8e3; } //go to timeout function after 8 seconds
+      if (errorCallback) { xhr.timeout = 8e3; } //go to timeout function after 8 seconds
 
-          xhr.onload = function() {
-              var status = xhr.status;
-              if ((status >= 200) && (status < 300)) {
-                  callback(xhr.response);
-              }
-              else if (errorCallback) {
-                errorCallback(xhr);
-              }
+      xhr.onload = function() {
+        var status = xhr.status;
+        if ((status >= 200) && (status < 300)) {
+          callback(xhr.response);
+        }
+        else if (errorCallback) {
+          errorCallback(xhr);
+        }
       };
       if (errorCallback) {
         xhr.onerror = function() {
@@ -88,7 +86,7 @@ else {
     },
     post: function(url,data,callback,errorCallback){
       this.getpost("POST",url,data,callback,errorCallback);
-     }
+    }
   };
 </script>
 <script>
@@ -110,42 +108,48 @@ else {
   
   btn.addEventListener("click",function(){
     
-      if (false) { //change to false to test post version
-        http.get("?getdata",function(data){
-          //output the raw data
-          output.nodeValue = data;
-          //convert JSON string to an object
-          let obj = JSON.parse(data);
-          //check it worked
-          if (!obj) throw "Failed to convert json string to object!";
-          //output the server time
-          if (!obj.time) throw "The server didn't tell us what time it was!";
-          time.nodeValue = (new Date(obj.time*1e3)).toLocaleString();
-          
-        },function(e){
-          output.nodeValue = "Something went wrong :(";
-          console.error("Error while fetching data",e);
-        });
-      }
-      else {
-      //with http.post, we can send post data
-        http.post("?getdata",{data:"post-data"},function(data){
-          //output the raw data
-          output.nodeValue = data;
-          //convert JSON string to an object
-          let obj = JSON.parse(data);
-          //check it worked
-          if (!obj) throw "Failed to convert json string to object!"
-          //output the server time
-          if (!obj.time) throw "The server didn't tell us what time it was!";
-          time.nodeValue = (new Date(obj.time*1e3)).toLocaleString();
-          
-        },function(e){
-          output.nodeValue = "Something went wrong :(";
-          console.error("Error while fetching data",e);
-        });
+    if (true) { //change to false to test post version
+      http.get("?getdata",function(data){
+        //output the raw data
+        output.nodeValue = data;
+        
+        //convert JSON string to an object
+        let obj = JSON.parse(data);
+        
+        //check it worked
+        if (!obj) throw "Failed to convert json string to object!";
+        
+        //output the server time
+        if (!obj.time) throw "The server didn't tell us what time it was!";
+        time.nodeValue = (new Date(obj.time*1e3)).toLocaleString();
+        
+      },function(e){
+        output.nodeValue = "Something went wrong :(";
+        console.error("Error while fetching data",e);
+      });
     }
-   });
- </script>
+    else {
+      //with http.post, we can send post data
+      http.post("?getdata",{data:"123"},function(data){
+        //output the raw data
+        output.nodeValue = data;
+        
+        //convert JSON string to an object
+        let obj = JSON.parse(data);
+        
+        //check it worked
+        if (!obj) throw "Failed to convert json string to object!";
+        
+        //output the server time
+        if (!obj.time) throw "The server didn't tell us what time it was!";
+        time.nodeValue = (new Date(obj.time*1e3)).toLocaleString();
+        
+      },function(e){
+        output.nodeValue = "Something went wrong :(";
+        console.error("Error while fetching data",e);
+      });
+    }
+  });
+</script>
 <?php
-  }
+  // }
