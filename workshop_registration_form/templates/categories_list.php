@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Categories: </title>
-    <link rel="stylesheet" href="templates/style/styles.css"/>
 </head>
 <body>
 <h1 style="background:purple;color: white">Categories: </h1>
@@ -18,7 +17,8 @@
         <?php foreach($categories as $category){ ?>
             <tr>
                <td>
-                    <a href="<?php url("category.php?id={$category['id']}") ?>"><?php $category['name']; ?></a>
+                    <!-- <a href="<?php url('category.php?id={$category["id"]}') ?>"><?php $category['name']; ?></a> -->
+                    <?php var_dump($category) ?>
                 </td>
                 <?php $category['questions_count']; ?></td>
             </tr>

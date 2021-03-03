@@ -15,12 +15,12 @@ if($userId == -1){
 
 function url(string $url):string
 {
-    $symbol = strstr($url,needle:"?") ?  '&' : '?';
-    //????????? what is this {$symbol}
-    return $url . "{$symbol}authId=" . $_GET['authId'];
+    // $symbol = strstr($url,needle:"?") ?  '&' : '?';
+    // //????????? what is this {$symbol}
+    // return $url . "{$symbol}authId=" . $_GET['authId'];
 
-//    if(strstr($url,needle:"?")){
-//        return $url .'&authId=' . $_GET['authId'];
-//    }
-//    return $url . '?authId=' . $_GET['authId'];
+   if(strstr($url,needle:"?")){
+       return $url .'&authId=' . $_GET['authId'];
+   }
+   return $url . '?authId=' . $_GET['authId'];
 }
