@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Register form</title>
+    <title>Registration form</title>
     <link rel="stylesheet" href="templates/style/styles.css"/>
 </head>
 <body>
