@@ -17,6 +17,8 @@ var_dump($question, $answers);
 if (isset($_POST['answer'])){
     $body = $_POST['body'];
     answer($db,$id,$userId, $body);
+    header("Location: " . url("question.php?id=$id"));
+    exit;
 }
 
 require_once 'templates/question.php';

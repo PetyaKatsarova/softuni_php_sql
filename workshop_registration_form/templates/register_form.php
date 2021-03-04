@@ -6,9 +6,8 @@
     <link rel="stylesheet" href="templates/style/styles.css"/>
 </head>
 <body>
-<h1>Register form</h1>
-
-Or go to <a href="login.php">login</a>, if you have an account
+<h1>Registration form</h1>
+Or go to<a href="login.php"> login</a> if you have an account
 <br/>
 <!-- where does $username, $password.$response come from??? -->
 <form method="post">

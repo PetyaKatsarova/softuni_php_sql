@@ -1,6 +1,11 @@
 <?php
-function answer($db,$id,$userId, $body){
-    
+function answer(PDO $db,int $questionId,int $userId, string $body){
+    $sql = "INSERT INTO answers (body, author_id,question_id)
+    VALUES(?, ?, ?)";
+
+    $stmt = $db->prepare($sql);
+    $stmt->execute([$body, $userId, $questionId]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
 function getAnswersByQuestionId(PDO $db, int $questionId) : array
