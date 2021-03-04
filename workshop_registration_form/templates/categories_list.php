@@ -17,10 +17,9 @@
         <?php foreach($categories as $category){ ?>
             <tr>
                <td>
-                    <!-- <a href="<?php url('category.php?id={$category["id"]}') ?>"><?php $category['name']; ?></a> -->
-                    <?php var_dump($category) ?>
+                    <a href="<?php url('category.php?id={$category["id"]}'); ?>"><?= $category['name']; ?></a>
                 </td>
-                <?php $category['questions_count']; ?></td>
+                <td><?php echo $category['questions_count']; ?></td>
             </tr>
         <?php } ?>
     </tbody>

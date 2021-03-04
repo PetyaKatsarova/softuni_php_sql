@@ -1,7 +1,7 @@
 <?php
 function getQuestionsByCategoryId($db,$categoryId):array{
     $sql = "SELECT 
-               q.id, q.title, q.author_id,u.username, q.created_on, c.name COUNT(a.id) AS answers_count
+               q.id, q.title, q.author_id,u.username AS 'author_name', q.created_on, c.name AS 'category_name', COUNT(a.id) AS answers_count
             FROM 
                 questions AS q
             INNER JOIN users u on q.author_id=u.id
@@ -15,7 +15,7 @@ function getQuestionsByCategoryId($db,$categoryId):array{
                 answers_count DESC";
 
     $stmt = $db->prepare($sql);
-    $stmt->execute($categoryId);
+    $stmt->execute([$categoryId]);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
