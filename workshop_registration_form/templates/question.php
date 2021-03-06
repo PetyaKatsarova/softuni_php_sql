@@ -5,6 +5,8 @@
     <title>Question</title>
 </head>
 <body>
+    <?php include_once 'logged_in_header.php' ?> | 
+
     <a href="<?=url("url:category.php?id={$question['category_id']}") ?>" >Back to questions in this category</a>
     <div class="question">
         <span>

@@ -3,7 +3,22 @@ function logout(PDO $db, string $authId)
 {
     $sql = "DELETE FROM authentications WHERE auth_string=?";
     $stmt = $db->prepare($sql);
-    $stmt->execute($authId);
+    $stmt->execute([$authId]);
+}
+
+function getRolesByUserId(PDO $db, int $userId): array
+{
+    $sql = "SELECT r.name 
+            FROM users_roles ur INNER JOIN roles r on ur.role_id = r.id
+            WHERE user_id = ?";
+    $stmt = $db->prepare($sql);
+    $stmt->execute([$userId]);
+   // return $stmt->fetchAll(PDO::FETCH_ASSOC);
+   // above return array of arrays, to get rid of the 
+   //wrapper array: 
+    return array_map(function($r){
+       return $r['name'];
+   }, $stmt->fetchAll(PDO::FETCH_ASSOC));
 }
 
 function getUserByAuthId(PDO $db, string $authId):int
@@ -55,5 +70,19 @@ function register($db,$username,$password){
     $statement = $db->prepare($sql);
     $result = $statement->execute([$username,
     password_hash($password, PASSWORD_ARGON2I)]);
+
+    $userId = $db->lastInsertId();
+    $roles = ['USER'];
+    if($userId == 15){
+        $roles[] = 'ADMIN';
+    }
+
+    foreach ($roles as $roleName){
+        $sql = "SELECT id FROM roles WHERE name = '$roleName'";
+        $roleId = $db->query($sql)->fetch(PDO::FETCH_ASSOC)['id'];
+        $sql = "INSERT INTO users_roles(user_id, role_id) VALUES ($userId, $roleId)";
+        $db->query($sql);
+    }
+
     return $result;
 }

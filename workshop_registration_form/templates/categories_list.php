@@ -6,6 +6,12 @@
 </head>
 <body>
 <?php include_once 'logged_in_header.php'; ?>
+
+<?php if(hasRole($db, $userId, 'ADMIN')): ?>
+   <a href="<?=url("create_category.php");?>">Create new category</a>
+<?php endif; ?>
+
+
 <h1 style="background:purple;color: white">Categories: </h1>
 <table border="1">
     <thead>

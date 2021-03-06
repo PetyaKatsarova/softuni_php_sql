@@ -15,7 +15,7 @@ if (isset($_POST['username'], $_POST['password'])) {
     if($userId != -1){
         $authString = issueAuthenticationString($db,$userId);
         header("Location: categories.php?authId=$authString");
-        var_dump($authString);
+        //var_dump($authString);
         exit;
     }else{
         $response = "Invalid username or password";

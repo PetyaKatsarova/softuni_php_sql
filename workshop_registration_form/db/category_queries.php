@@ -1,4 +1,10 @@
 <?php
+function createCategory(PDO $db,string $name){
+    $sql = "INSERT INTO categories (name) VALUES(?)";
+    $stmt = $db->prepare($sql);
+    $stmt->execute([$name]);
+}
+
 function getQuestionsByCategoryId($db,$categoryId):array{
     $sql = "SELECT 
                q.id, q.title, q.author_id,u.username AS 'author_name', q.created_on, c.name AS 'category_name', COUNT(a.id) AS answers_count

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Questions </title>
+    <title>Questions</title>
 </head>
 <body>
 <?php include_once 'logged_in_header.php' ?> | 
