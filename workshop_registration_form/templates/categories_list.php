@@ -5,6 +5,7 @@
     <title>Categories: </title>
 </head>
 <body>
+<?php include_once 'logged_in_header.php'; ?>
 <h1 style="background:purple;color: white">Categories: </h1>
 <table border="1">
     <thead>
@@ -17,7 +18,7 @@
         <?php foreach($categories as $category){ ?>
             <tr>
                <td>
-                    <a href="<?php url('category.php?id={$category["id"]}'); ?>"><?= $category['name']; ?></a>
+                    <a href="<?=url("category.php?id={$category['id']}"); ?>"><?= $category['name']; ?></a>
                 </td>
                 <td><?php echo $category['questions_count']; ?></td>
             </tr>

@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <title>Questions</title>
 </head>
-<a href="<?=url("categories.php") ?>">Back to all categories</a>
 <body>
-   <a href="">Ask a new question</a>
+   <?php include_once 'logged_in_header.php'; ?> | 
+   <a href="<?=url("categories.php") ?>">Back to all categories</a>
    |
-   <a href="<?=url("ask_question_php?category_id=$id");?>">Ask new question</a>
+   <a href="<?=url("ask_question.php?category_id=$id");?>">Ask new question</a>
    <hr/>
-   <?php foreach ($questions as $q){?>
+   <?php foreach ($questions as $question){?>
      <div class="question">
         <span><a href="<?=url("question.php?id={$question['id']}")?>"><?= htmlspecialchars($question['title']);?></a></span>
         <span><?= $question['answers_count'];?></span>

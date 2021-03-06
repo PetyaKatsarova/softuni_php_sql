@@ -1,4 +1,11 @@
 <?php
+function logout(PDO $db, string $authId)
+{
+    $sql = "DELETE FROM authentications WHERE auth_string=?";
+    $stmt = $db->prepare($sql);
+    $stmt->execute($authId);
+}
+
 function getUserByAuthId(PDO $db, string $authId):int
 {
     $sql = "SELECT user_id FROM authentications WHERE auth_string=?";

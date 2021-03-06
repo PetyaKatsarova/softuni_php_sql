@@ -15,7 +15,9 @@ function getAnswersByQuestionId(PDO $db, int $questionId) : array
    FROM answers AS a
    INNER JOIN 
    users u on a.author_id = u.id
-   WHERE a.question_id = ?";
+   WHERE a.question_id = ?
+   ORDER BY a.created_on DESC,
+   a.id";
 
    $stmt = $db->prepare($sql);
    $stmt->execute([$questionId]);

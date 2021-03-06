@@ -4,7 +4,7 @@ function getQuestionsByCategoryId($db,$categoryId):array{
                q.id, q.title, q.author_id,u.username AS 'author_name', q.created_on, c.name AS 'category_name', COUNT(a.id) AS answers_count
             FROM 
                 questions AS q
-            INNER JOIN users u on q.author_id=u.id
+            INNER JOIN users2 u on q.author_id=u.id
             INNER JOIN categories c ON q.category_id=c.id
             LEFT JOIN answers a on q.id = a.question_id
             WHERE c.id=?

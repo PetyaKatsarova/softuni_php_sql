@@ -1,22 +1,23 @@
 <?php 
 require_once 'tags_queries.php';
 
-function createQuestion(PDO $db,int $userId,string $title,string $body, int $category, array $existingTags, array $newTags):int{
+function createQuestion($db,$userId,$title,$body,$category,$existingTags,$newTags):int{
     foreach ($newTags as $newTag){
         $tagId = findTag($db,$newTag);
         $existingTags[] = $tagId;
     }
 
    $sql = "INSERT INTO qestions(title, body, category_id, author_id, created_on 
-        VALUES (?,?,?,?,NOW())";
+        VALUES (?, ?, ?, ?, NOW())";
 
     $stmt = $db->prepare($sql);
     $stmt->execute([$title,$body,$category,$userId]);
-
     $questionId = $db->lastInsertId();
+    // doesnt work
+    echo $questionId;
 
     foreach($existingTags as $tagId){
-        $sql="INSERT INTO questions_tags(question_id,tag_id) VALUES(?,?);";
+        $sql="INSERT INTO questions_tags(questions_id,tags_id) VALUES(?,?);";
         $stmt = $db->prepare($sql);
         $stmt->execute([$questionId,$tagId]);
     }

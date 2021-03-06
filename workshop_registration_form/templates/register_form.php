@@ -9,10 +9,9 @@
 <h1>Registration form</h1>
 Or go to<a href="login.php"> login</a> if you have an account
 <br/>
-<!-- where does $username, $password.$response come from??? -->
 <form method="post">
     Username:<input type="text" value="<?=$username;?>" name="username"/><br/>
-    Pass: <input type="<?= !empty($password) ? 'text' : 'password';?>" value="<?=$password; ?>" name="password"/><br/>
+    Password: <input type="<?= !empty($password) ? 'text' : 'password';?>" value="<?=$password; ?>" name="password"/><br/>
     <input type="submit"/>
 </form>
 <div id="response">
