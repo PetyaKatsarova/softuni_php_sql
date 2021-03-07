@@ -16,7 +16,7 @@
             <div class="question">
                 <span>
                     <a href="<?=url("question.php?id={$question['id']}") ?>">
-                         <?= htmlspecialchars($questions['title']); ?>
+                         <?= htmlspecialchars($question['title']); ?>
                     </a>
                 </span>
                 <span>
@@ -25,6 +25,13 @@
                 <span><?= htmlspecialchars($question['author_name']); ?></span>
                 <span><?= $question['created_on']; ?></span>
                 <span><?= $question['category_name']; ?></span>
+            </div>
+            <div>
+                <?php if(hasLiked($db, $userId, $question['id'])): ?>
+                    <a href="<?=url("category.php?id={$_GET['id']}&action=removeLike&question_id={$question['id']}"); ?>">Remove Like</a>
+                <?php else: ?>
+                    <a href="<?=url("category.php?id={$_GET['id']}&action=like&question_id={$question['id']}"); ?>">Like</a>
+                <?php endif; ?>
             </div>
         <?php }?>
     </body>

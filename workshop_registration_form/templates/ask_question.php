@@ -15,17 +15,18 @@
      Category:
      <select name="category">
         <?php foreach($categories as $category){ ?>
-            <option value="<?=$category['id'];?>">
+            <option <?=$category['id'] == $categoryId ? 'selected' : ''; ?> value="<?=$category['id'];?>">
                 <?=$category['name']?>(<?=$category['questions_count'] ?>)
             </option>
         <?php }?>
      </select>
      <br/><br>
      Tags: 
-     <select multiple name="existing_tags[]" id="existing_tags">
+     <select multiple="multiple" name="existing_tags[]">
+        <option>Proba123</option>
         <?php foreach($tags as $tag){ ?>
             <option value="<?=$tag['id'];?>">
-                <?=$tag['name']?>(<?=$category['questions_count'] ?>)
+                <?=$tag['name'];?>(<?=$category['questions_count']; ?>)
             </option>
         <?php }?>
      </select><br/>

@@ -8,5 +8,14 @@ $id = $_GET['id'];
 
 require_once 'db/category_queries.php';
 
+if(isset($_GET['action'], $_GET['question_id'])){
+   $action = $_GET['action'];
+   if($action === 'like'){
+      like($db, $userId, $id);
+   }else{
+      removeLike($db, $userId, $id);
+   }
+}
+
 $questions = getQuestionsByCategoryId($db,$id);
 require_once 'templates/questions_by_category.php';

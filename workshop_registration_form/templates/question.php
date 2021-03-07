@@ -7,7 +7,8 @@
 <body>
     <?php include_once 'logged_in_header.php' ?> | 
 
-    <a href="<?=url("url:category.php?id={$question['category_id']}") ?>" >Back to questions in this category</a>
+    <a href="<?=url("category.php?id={$question['category_id']}") ?>" >Back to questions in this category</a>
+    <br/><br/>
     <div class="question">
         <span>
             Title:
@@ -15,6 +16,7 @@
         </span>
         <br/>
         <span>
+            Question:
             <?= htmlspecialchars($question['body']);?>
         </span>
         </br>

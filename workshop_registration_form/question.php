@@ -12,7 +12,7 @@ require_once 'db/answer_queries.php';
 
 $question = getQuestionById($db,$id);
 $answers = getAnswersByQuestionId($db, $id);
-var_dump($question, $answers);
+// var_dump($question, $answers);
 
 if (isset($_POST['answer'])){
     $body = $_POST['body'];

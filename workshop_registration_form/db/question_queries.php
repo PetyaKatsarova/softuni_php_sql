@@ -1,14 +1,14 @@
 <?php 
 require_once 'tags_queries.php';
 
-function createQuestion($db,$userId,$title,$body,$category,$existingTags,$newTags):int{
+function createQuestion($db, $userId, $title, $body, $category, $existingTags, $newTags):int{
     foreach ($newTags as $newTag){
         $tagId = findTag($db,$newTag);
         $existingTags[] = $tagId;
     }
 
-   $sql = "INSERT INTO qestions(title, body, category_id, author_id, created_on 
-        VALUES (?, ?, ?, ?, NOW())";
+    $sql = "INSERT INTO questions(title, body, category_id, author_id, created_on)
+            VALUES(?, ?, ?, ?, NOW())";
 
     $stmt = $db->prepare($sql);
     $stmt->execute([$title,$body,$category,$userId]);
@@ -16,11 +16,11 @@ function createQuestion($db,$userId,$title,$body,$category,$existingTags,$newTag
     // doesnt work
     echo $questionId;
 
-    foreach($existingTags as $tagId){
-        $sql="INSERT INTO questions_tags(questions_id,tags_id) VALUES(?,?);";
-        $stmt = $db->prepare($sql);
-        $stmt->execute([$questionId,$tagId]);
-    }
+    // foreach($existingTags as $tagId){
+    //     $sql="INSERT INTO questions_tags(questions_id,tags_id) VALUES(?,?);";
+    //     $stmt = $db->prepare($sql);
+    //     $stmt->execute([$questionId,$tagId]);
+    // }
     return (int)$questionId;
 }
 
