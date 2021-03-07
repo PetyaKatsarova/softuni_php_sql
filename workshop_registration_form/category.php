@@ -11,9 +11,9 @@ require_once 'db/category_queries.php';
 if(isset($_GET['action'], $_GET['question_id'])){
    $action = $_GET['action'];
    if($action === 'like'){
-      like($db, $userId, $id);
+      like($db, $userId, $_GET['question_id']);
    }else{
-      removeLike($db, $userId, $id);
+      removeLike($db, $userId, $_GET['question_id']);
    }
 }
 

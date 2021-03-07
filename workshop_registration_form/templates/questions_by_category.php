@@ -28,9 +28,9 @@
             </div>
             <div>
                 <?php if(hasLiked($db, $userId, $question['id'])): ?>
-                    <a href="<?=url("category.php?id={$_GET['id']}&action=removeLike&question_id={$question['id']}"); ?>">Remove Like</a>
+                    <a href="<?=url("category.php?id={$_GET['id']}&action=removeLike&question_id={$question['id']}"); ?>">Remove Like </a>(<?=$question['likes_count']; ?>)
                 <?php else: ?>
-                    <a href="<?=url("category.php?id={$_GET['id']}&action=like&question_id={$question['id']}"); ?>">Like</a>
+                    <a href="<?=url("category.php?id={$_GET['id']}&action=like&question_id={$question['id']}"); ?>">Like  </a>(<?=$question['likes_count']; ?>)
                 <?php endif; ?>
             </div>
         <?php }?>
