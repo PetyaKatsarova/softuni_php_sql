@@ -1,4 +1,14 @@
+<form method="post" enctype="multipart/form-data">
+   <input type="file" name="image">Upload img<br>
+   <input type= "submit" value="upload">
+</form>
 <?php
+var_dump($_FILES['image']);
+?>
+<br/><br/>
+
+<?php
+
 require_once 'db/db_connection.php';
 $response = '';
 $username = '';

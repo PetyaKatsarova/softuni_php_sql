@@ -27,8 +27,10 @@
      </div>
      <hr/>
      <?php foreach($answers as $answer){ ?>
+       <hr>
        <div>by: <?=htmlspecialchars($answer['author_name']); ?></div>
        <div><?=htmlspecialchars($answer['body']); ?></div>
+       <br/>
      <?php }?>
      <form method="post">
        Answer here: 

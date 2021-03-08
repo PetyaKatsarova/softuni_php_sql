@@ -53,7 +53,7 @@ function getUserByAuthId(PDO $db, string $authId):int
     }
     return -1;
 }
-function issueAuthenticationString(PDO $db, int $userId) : string{
+function issueAuthenticationString(PDO $db, int $userId) : string {
    $sql = "SELECT auth_string FROM authentications WHERE user_id=?";
 
    $stmt = $db->prepare($sql);
