@@ -32,7 +32,8 @@
     <?php 
     // include 'play.php';
       //include 'datatransfer.php';
-      include 'registration_form/registration.php';
+      // include 'registration_form/registration.php';
+      
     ?>  
     </body>    
 </html>    
