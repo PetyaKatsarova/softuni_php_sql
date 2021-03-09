@@ -40,7 +40,13 @@ $p2 = new Person('Pesho', 55);
 $p3 = new Person('Niam', 5);
 $personsArr = Array($p1, $p2, $p3);
 $family = new Family();
+
 for($i=0; $i<count($personsArr); $i++){
     $family->addMember($personsArr[$i]);
 }
-print_r($family->getOldestMember());
+// i dont know why it is underlined but works
+if(null !== $family->getOldestMember()){
+    echo $family->getOldestMember()->getName() . ' is ' . $family->getOldestMember()->getAge() . ' years old.';
+}else{
+    echo 'There is no oldest member.';
+}
