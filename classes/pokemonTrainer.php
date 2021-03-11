@@ -75,44 +75,51 @@ class Pokemon{
         $this->health -= max(0, $dmg);
     }
 }
-
+$arr = ['Stamat', 'Blast', 'Water', 18,'Nasko', 'Pikachu', 'Electricity', 22,'Jicat', 'Sth', 'Psychic', 90,'Tournament', 'Fire', 'Electricity', 'Fire', 'End'];
 $trainers = [];
-$line = readline();
-while($line != 'Tournament'){
-    list($trainerName, $pokemonName, $element, $health) = explode(' ', $line);
-    if(!key_exists($trainerName, $trainers)){
-        $trainers[$trainerName] = new Trainer($trainerName);
-    }
-    $trainer = $trainers[$trainerName];
-    $trainer->catchPokemon(new Pokemon($pokemonName, $element, $health));
-
-    $line = readline();
+//  $line = readline();
+// for($i=0; $i<count($arr); $i+=4){
+//     if($arr[$i] == 'Tournament') break;
+//     $trainerName = $arr[$i];
+//     $pokemonName = $arr[$i+1];
+//     $element = $arr[$i+2];
+//     $health = $arr[$i+3];
+//     if(!key_exists($trainerName, $trainers)){
+//         $trainers[$trainerName] = new Trainer($trainerName);
+//     }
+//     $trainer = $trainers[$trainerName];
+//     $trainer->catchPokemon(new Pokemon($pokemonName, $element, $health));
+//     // var_dump($trainers);
+// }
+$arr2;
+for($i=0; $i<count($arr); $i++){
+   if($arr[$i] == 'Tournament'){
+       echo 'Tournament breaking out;';
+       break;
+   }
+   $removed = array_shift($arr);
 }
+ var_dump($arr);
 
-$Line = readline();
-while($line != 'End'){
-    foreach($trainers as $trainer){
-        if($trainer->hasPokemonsByElement($line)){
-            $trainer->receiveBadge();
-        }else{
-            $trainer->hitPokemons(dmg:10);
-        }
-    }
+// // $Line = readline();
+// for($i=0; $i<count($arr); $i++){
+//     if($arr[$i] == 'End') break;
+//     foreach($trainers as $trainer){
+//         if($trainer->hasPokemonsByElement($$arr[$i])){
+//             $trainer->receiveBadge();
+//         }else{
+//             $trainer->hitPokemons(dmg:10);
+//         }
+//     }
+// }
 
-    $line = readline();
-}
+// uksort($trainers, function($k1,$k2) use ($trainers){
+//     $trainer1 = $trainers[$k1];
+//     $trainer2 = $trainers[$k2];
+//     return $trainer2->getBadges() <=> $trainer1->getBadges();
+// });
+// echo implode(PHP_EOL, $trainers);
 
-uksort($trainers, function($k1,$k2) use ($trainers){
-    $trainer1 = $trainers[$k1];
-    $trainer2 = $trainers[$k2];
-    return $trainer2->getBadges() <=> $trainer1->getBadges();
-});
-echo implode(PHP_EOL, $trainers);
-
-$arr = ['Stamat', 'Blast', 'Water', 18,
-'Nasko', 'Pikachu', 'Electricity', 22,
-'Jicat', 'Sth', 'Psychic', 90,
-'Tournament', 'Fire', 'Electricity', 'Fire', 'End'];
 // Nasko 1 1
 //Stamat 0 0
 //Jicat 0 1
