@@ -11,7 +11,5 @@ class DateModifier{
     }
 }
 $bla = new DateModifier();
-echo $bla->daysInBetween('17 March 2021', '11 March 2020');
-// Create a class DateModifier which stores the difference of the days between two Dates. It should have a method
-// which takes two String parameters representing a date as Strings and calculates the difference in the days between
-// them.
+echo $bla->daysInBetween('17 March 1973', '11 March 2021');
+// Create a class DateModifier which stores the difference of the days between two Dates. It should have a method which takes two String parameters representing a date as Strings and calculates the difference in the days between them.

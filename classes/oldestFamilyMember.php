@@ -17,7 +17,9 @@ class Person{
 }
 
 class Family{
+    /**var @Person[]*/
     private $members;
+    /***var @Person */
     private $oldestMember;
 
     public function __construct()

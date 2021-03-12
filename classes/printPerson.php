@@ -44,7 +44,7 @@ for($i=0; $i<count($arr); $i+=3){
     $people[] = $person;  
 }
 
-// sort by age
+// sort by age asc
 usort($people, function(Person $p1, Person $p2){
     return $p1->getAge() <=> $p2->getAge();
 });

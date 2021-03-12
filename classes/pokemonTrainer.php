@@ -1,4 +1,33 @@
 <?php
+class Pokemon{
+    /** @var string */
+    private $name;
+    /** @var string */
+    private $element;
+    /** @var int */
+    private $health;
+
+    public function __construct($name, $el, $h){
+        $this->name = $name;
+        $this->element = $el;
+        $this->health = $h;
+    }
+    public function getName():string{
+        return $this->name;
+    }
+    public function getElement():string{
+        return $this->element;
+    }
+    public function getHealth():int{
+        return $this->health;
+    }
+    public function isAlive():bool{
+        return $this->getHealth() > 0;
+    }
+    public function hit(int $dmg):void{
+        $this->health -= max(0, $dmg);
+    }
+}
 class Trainer{
     /** * @var string */
     private $name;
@@ -46,35 +75,7 @@ class Trainer{
     }
 }
 
-class Pokemon{
-    /** @var string */
-    private $name;
-    /** @var string */
-    private $element;
-    /** @var int */
-    private $health;
 
-    public function __construct($name, $el, $h){
-        $this->name = $name;
-        $this->element = $el;
-        $this->health = $h;
-    }
-    public function getName():string{
-        return $this->name;
-    }
-    public function getElement():string{
-        return $this->element;
-    }
-    public function getHealth():int{
-        return $this->health;
-    }
-    public function isAlive():bool{
-        return $this->getHealth() > 0;
-    }
-    public function hit(int $dmg):void{
-        $this->health -= max(0, $dmg);
-    }
-}
 $arr = ['Stamat', 'Blast', 'Water', 18,'Nasko', 'Pikachu', 'Electricity', 22,'Jicat', 'Sth', 'Psychic', 90,'Tournament', 'Fire', 'Electricity', 'Fire', 'End'];
 $trainers = [];
 //  $line = readline();
@@ -91,7 +92,10 @@ $trainers = [];
 //     $trainer->catchPokemon(new Pokemon($pokemonName, $element, $health));
 //     // var_dump($trainers);
 // }
-$arr2;
+ //array_map();
+// $bla->getBadges();
+
+
 for($i=0; $i<count($arr); $i++){
    if($arr[$i] == 'Tournament'){
        echo 'Tournament breaking out;';
