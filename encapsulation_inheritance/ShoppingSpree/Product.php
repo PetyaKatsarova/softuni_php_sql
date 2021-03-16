@@ -3,6 +3,7 @@ class Product{
     private $name;
     /** @var float*/
     private $cost;
+    
     public function __construct()
     { 
         $this->setName($this->name);
