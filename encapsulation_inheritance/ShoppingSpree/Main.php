@@ -2,45 +2,46 @@
 require_once 'Product.php';
 require_once 'Person.php';
 
-$arr2 = ['Bread=10;Milk=2;',
-'Pesho Bread',
-'Gosho Milk',
-'Gosho Milk',
-'Pesho Milk',
-'END'
-];
-$arr1 = ['Pesho=11;','Gosho=4;'];
-$result = [];
- for($i=0; $i<count($arr1); $i++){
-     $arr1[$i] = preg_split("/[=;]/", $arr1[$i], limit:-1);
-    //  $result[] = array_filter($arr[$i], function ($el){
-    //      return $el !== '';
-    //  });
-    // $result[] = preg_split("/[=;]/", $arr1[$i], limit:-1, flags: PREG_SPLIT_NO_EMPTY);
-   // $result[] = explode('=', $arr1[$i]);
-   $arr1[$i] = implode(' ', $arr1[$i]);
-     echo gettype($arr1[$i]) . "<br/>";
- };
-// print_r($result);
+$line1 = 'Pesho=11;Gosho=4;';
+$line2 = ['Bread=10;Milk=2;'];
+$line3 = ['Pesho Bread', 'Gosho Milk', 'Gosho Milk','Pesho Milk','END'];
+$line1 = preg_split("/[=;]/", $line1, limit:-1);
+// returns array splitting the str: removing = and ; 
+$line1 = array_filter($line1, function ($el){
+           return $el !== '';
+       });
+// removes empty str: ""
+
  $people = [];
-// for($i=0; $i<count($result[0])-1; $i+=2){
-//     $personName = $result[0][$i];
-//     $personMoney = $result[0][$i+1];
-//     echo $personName;
-//     try{
-//          $people[$personName] = new Person($personName, $personMoney);
-//     }catch(Exception $ex){
-//         echo $ex->getMessage();
-//     }
-  
-// }
-// print_r($people);
- // CONST PREG_SPLIT_NO_EMPTY
-// foreach($arr2 as $line){
-//     if($line !== ''){
-//         $result[] = $line;
-//     }
-// }
+for($i=0; $i<count($line1)-1; $i+=2){
+    $personName = $line1[$i] . "<br/>";
+    $personMoney = $line1[$i+1];
+    // echo $personName . "<br/>";
+    try{
+          $people[$personName] = new Person($personName, $personMoney);
+          // var_dump($people[$personName]);
+    }catch(Exception $ex){
+        echo $ex->getMessage();
+    }
+}
+// make 1 str from line3 and again split into single words array:
+$line2 = preg_split("/[=;]/", implode("", $line2), limit:-1);
+// returns array splitting the str: removing = and ; 
+$line2 = array_filter($line2, function ($el){
+           return $el !== '';
+        });
+        // var_dump($line2);
+ $products = [];
+for($i=0; $i<count($line2)-1;$i+=2){
+    $productName = $line2[$i];
+    $productCost = $line2[$i+1];
+      echo $productName . "<br/>";
+      echo $productCost. "<br/><br/>";
+      $bla = new Product($productName, $productCost);
+     $products[$productName] = $bla;
+    //  var_dump($products[$productName]);
+}
+ var_dump($products);
 
 
 

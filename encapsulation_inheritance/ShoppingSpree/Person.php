@@ -13,9 +13,9 @@ class Person{
         $this->products = [];
     }
     private function setName($n):void{
-        if(empty($name)){
-            throw new Exception("name cannot be empty.");
-        }
+        // if(empty($name)){
+        //     throw new Exception("name cannot be empty.");
+        // }
         $this->name = $n;
     }
     private function setMoney(float $m){

@@ -13,14 +13,14 @@ class Product{
         return $this->name;
     }
     private function setName($n):void{
-        $this->validatePositiveNum(strlen($n), 'Name');
+        // $this->validatePositiveNum(strlen($n), 'Name');
         $this->name = $n;
     }
     public function getCost():float{
         return $this->cost;
     }
     private function setCost($c){
-        $this->validatePositiveNum($c, 'Cost');
+        // $this->validatePositiveNum($c, 'Cost');
         $this->cost = $c;
     }
     private function validatePositiveNum($val, $param):void{
