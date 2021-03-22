@@ -1,24 +1,30 @@
 <?php
-interface Writer
-{
+interface Writable{
     public function writeText(string $text): void;
+}
+interface Chargeable
+{
     public function useInk(int $quantity): void;
     public function getInk(): int;
 }
+interface WriterInterface extends Writable, Chargeable
+{
+    
+}
 
-interface ElectricalDevice
+interface ElectricalDeviceInterface
 {
     public function getUsage(): int;
     public function isPlugged(): bool;
     public function plug(): void;
 }
 
-interface Consumable
+interface ConsumableInterface
 {
     public function isAvailable():bool;
 }
 
-class Printer implements ElectricalDevice, Writer
+class Printer implements ElectricalDeviceInterface, WriterInterface
 {
     private $ink;
     private $isPlugged;
@@ -48,18 +54,23 @@ class Printer implements ElectricalDevice, Writer
     public function isPlugged(): bool{
         return $this->isPlugged;
     }
-    public function plug(ElectricalDevice $device)
-    {
-        if(!$device->isPlugged()){
-            $device->plug();
-        }
+    public function plug(): void{
+        $this->isPlugged = true;
     }
+    
 }
 
-class Pen implements Writer, Consumable{
+class Pen implements WriterInterface, ConsumableInterface{
+    private $ink;
+
+    public function __construct($ink)
+    {
+       $this->ink = $ink;   
+    }
+
     public function writeText(string $text): void{
         if($this->getInk > 0){
-            $this->useInk(strlen($text) * 5);
+            $this->useInk(strlen($text));
             echo $text;
         }
         throw new Exception("Not enough ink");
@@ -74,3 +85,25 @@ class Pen implements Writer, Consumable{
         return true;
     }
 }
+
+function plug(ElectricalDeviceInterface $device)
+{
+    if(!$device->isPlugged()){
+        $device->plug();
+    }
+}
+
+function rechargeInk(WriterInterface $writer)
+    {
+        if($writer->getInk() < 5){
+            // on reverse: will add 100!!
+            $writer->useInk(-100);
+        }
+
+    }
+
+rechargeInk(new Pen(50));
+rechargeInk(new Printer(30));
+plug(new Printer(30));
+
+
