@@ -24,23 +24,15 @@ interface ConsumableInterface
     public function isAvailable():bool;
 }
 
-class Printer implements ElectricalDeviceInterface, WriterInterface
+abstract class AbstractWriter implements WriterInterface
 {
     private $ink;
-    private $isPlugged;
+    private $modifier;
 
-    public function __construct($ink)
+    public function __construct($ink, $modifier)
     {
        $this->ink = $ink;   
-       $this->isPlugged = true;
-    }
-
-    public function writeText(string $text): void{
-        if($this->getInk > 0){
-            $this->useInk(strlen($text) * 5);
-            echo $text;
-        }
-        throw new Exception("Not enough ink");
+       $this->modifier = $modifier;
     }
     public function useInk(int $quantity): void{
         $this->ink -= $quantity;
@@ -48,6 +40,27 @@ class Printer implements ElectricalDeviceInterface, WriterInterface
     public function getInk(): int{
         return $this->ink;
     }
+    public function writeText(string $text): void{
+        if($this->getInk > 0){
+            $this->useInk(strlen($text) * $this->modifier);
+            echo $text;
+        }
+        throw new Exception("Not enough ink");
+    }
+
+}
+
+class Printer extends AbstractWriter implements ElectricalDeviceInterface
+{
+    const INK_MODIFIER = 5;
+
+    private $isPlugged;
+
+    public function __construct($ink, $isPlugged){
+        parent::__construct($ink, self::INK_MODIFIER);
+        $this->isPlugged = $isPlugged;
+    }        
+
     public function getUsage(): int{
         return 300;
     }
@@ -60,27 +73,14 @@ class Printer implements ElectricalDeviceInterface, WriterInterface
     
 }
 
-class Pen implements WriterInterface, ConsumableInterface{
-    private $ink;
-
+class Pen extends AbstractWriter implements ConsumableInterface
+{ 
+    const INK_MODIFIER = 1;
+    
     public function __construct($ink)
     {
-       $this->ink = $ink;   
+        parent::__construct($ink, self::INK_MODIFIER);
     }
-
-    public function writeText(string $text): void{
-        if($this->getInk > 0){
-            $this->useInk(strlen($text));
-            echo $text;
-        }
-        throw new Exception("Not enough ink");
-    }
-    public function useInk(int $quantity): void{
-        $this->ink -= $quantity;
-    }
-    public function getInk(): int{
-        return $this->ink;
-    }   
     public function isAvailable():bool{
         return true;
     }
@@ -102,8 +102,12 @@ function rechargeInk(WriterInterface $writer)
 
     }
 
-rechargeInk(new Pen(50));
-rechargeInk(new Printer(30));
-plug(new Printer(30));
+rechargeInk(new Pen(50, 1));
+rechargeInk(new Printer(30, true));
+
+$printer1 = new Printer(50, true);
+$printer1->writeText('lalalaa');
+
+plug(new Printer(30, 5));
 
 
