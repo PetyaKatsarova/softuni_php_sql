@@ -10,7 +10,7 @@ class Truck extends VehicleAbstract{
        parent::__construct($fuelQuantity, $fuelConsumption, self::FUEL_MODIFIER);
     }
 
-    public function refuel(int $litres):void{
+    public function refuel($litres): void{
         parent::refuel($litres * self::REFUEL_MODIFIER);
     }
     

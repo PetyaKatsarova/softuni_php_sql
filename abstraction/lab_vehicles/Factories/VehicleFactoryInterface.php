@@ -5,5 +5,5 @@ use Vehicles\VehicleInterface;
 
 interface VehicleFactoryInterface
 {
-    public function create(string $type, $float $qty, float $consumption):VehicleInterface;
+    public function create(string $type, float $qty, float $consumption):VehicleInterface;
 }
