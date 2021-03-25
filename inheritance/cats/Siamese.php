@@ -1,5 +1,5 @@
 <?php
-require_once 'Cat.php';
+// require_once 'Cat.php';
 
 class Siamese extends Cat{
     private $earSize;

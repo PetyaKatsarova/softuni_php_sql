@@ -22,6 +22,6 @@ abstract class Cat{
     }
     public function __toString()
     {
-        return $this->breed . " " . $this->getName();
+        return $this->name . " " . $this->getBreed();
     }
 }
