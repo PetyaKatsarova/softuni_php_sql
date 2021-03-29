@@ -14,6 +14,7 @@ class AnimalFactory implements AnimalFactoryInterface{
                     return new Cat($name, $type, $weight, $livingRegion, $breed);
                 case "zebra":
                 case "mouse": 
+                case "tiger":
                     return new $type($name, $type, $weight, $livingRegion);
                 default: 
                 return new Mouse('Ivancho', 'mouse', 100, "Imaginary");

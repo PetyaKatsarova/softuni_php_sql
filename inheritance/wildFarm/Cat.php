@@ -12,6 +12,12 @@ class Cat extends MammalAbstract{
         echo "Meoow<br/>";
     }
     public function eat(FoodAbstract $food): void{
+         $this->setFoodEaten($food->getQuantity());
+    }
 
+    public function __toString()
+    {
+        return sprintf( "%s [ %s, %s, %d, %d, %s ]", 
+                      $this->getType(), $this->getNam(), $this->breed, $this->getWeight(),$this->getFoodEaten(), $this->getLivingRegion());
     }
 }

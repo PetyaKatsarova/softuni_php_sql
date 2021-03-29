@@ -14,9 +14,14 @@ class Main{
             $animal = AnimalFactory::create($animalData);
             
             $foodData = explode(" ", $arr[$i+1]);
-            
+            $foodType = $foodData[0];
+            $foodQuantity = intval($foodData[1]);
+
+            $food = FoodFactory::create($foodType, $foodQuantity);
+            // print_r($food);
             $animal->makeSound();
-            // var_dump($animalData);
+            $animal->eat($food);
+            echo $animal;
         }
     }
 }

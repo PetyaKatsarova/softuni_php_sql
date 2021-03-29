@@ -8,9 +8,15 @@ class Zebra extends MammalAbstract{
     }
 
     public function makeSound(): void{
-         echo "Zs<br/>";
+         echo "<br/>Zs<br/>";
     }
     public function eat(FoodAbstract $food): void{
+        $className = new \ReflectionClass($this);
 
+        if("Vegetable" !== $this->getClassName($food)){
+            echo $className->getName() . " can't eat " . $this->getClassName($food) . "<br/>";
+        }else{
+            $this->setFoodEaten($food->getQuantity());
+        }
     }
 }
