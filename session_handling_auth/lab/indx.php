@@ -1,10 +1,11 @@
 <form method="post">
-  Color: <input type="color" name="color" />
+  Color: <input type="text" name="color" /> 
+  <!-- input type="color" -->
   <button type="submit">Submit</button>
 </form>
 
 <?php
-echo "<h1>Welcome To My Magical Site</h1>";
+echo "<h1>Welcome To My Cool Site</h1>";
 
 if(isset($_COOKIE['font-style'])){
    // echo 'yes ' . $_COOKIE['font-style'];

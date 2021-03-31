@@ -6,5 +6,17 @@ header("Set-Cookie: font-style=italic");//it is shown in res cookie in network i
 $headers = getallheaders();
 var_dump($headers);
 echo "<h1>welcome from page 3</h1>";
-echo "<a href='index.php' color=green>back to index</a>";
-exit;
+echo "<a href='index.php' style='color:green'>back to index</a><br/><br/>";
+// echo "<a href=logout.php>logout</a>";
+// exit;
+echo "<script>
+    if(4<5){
+        // client side: can be changed in the browser, php session can't: kept cookie on the browser
+        localStorage.setItem('name', 'Peshko');
+        sessionStorage.setItem('age', 51);
+    }else{
+        console.log('impossible');
+    }
+    console.log('tvoeto ime e: ' + localStorage.getItem('name'));
+    </script>";
+
