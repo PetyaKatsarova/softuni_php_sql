@@ -6,7 +6,7 @@ header("Set-Cookie: font-style=italic");//it is shown in res cookie in network i
 $headers = getallheaders();
 var_dump($headers);
 echo "<h1>welcome from page 3</h1>";
-echo "<a href='index.php' style='color:green'>back to index</a><br/><br/>";
+echo "<a href=indx.php style='color:green'>back to index</a><br/><br/>";
 // echo "<a href=logout.php>logout</a>";
 // exit;
 echo "<script>
