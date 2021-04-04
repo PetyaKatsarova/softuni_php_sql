@@ -14,7 +14,8 @@ use Services\Encryption\EncryptionServiceInterface;
 class UserService implements UserServiceInterface
 {
     const MIN_USER_LENGTH = 5;
-    const MAX_ALLOWED_SIZE = 30000;
+    // originally was 30000
+    const MAX_ALLOWED_SIZE = 400000;
     const ALLOWED_IMAGE_PREFIX = 'image/';
 
     /**
@@ -73,7 +74,8 @@ class UserService implements UserServiceInterface
     public function verifyCredentials(string $username, string $password): bool
     {
         $user = $this->userRepository->getByUsername($username);
-
+        echo "verifyCredentials: from userService<br/>";
+        var_dump($user);
         return $this->encryptionService->verify($password, $user->getPassword());
     }
 
@@ -96,18 +98,15 @@ class UserService implements UserServiceInterface
         if ($size >= self::MAX_ALLOWED_SIZE) {
             throw new UploadException("Image too big");
         }
-
-
-
         $filePath = 'public/images/' . uniqid('profile_') . '.' . explode("/", $type)[1];
-
         if (!move_uploaded_file(
             $tempName,
             $filePath
         )) {
             throw new UploadException("Error uploading file");
         }
-
-        $this->userRepository->setPictureUrl($id, $filePath);
+        // echo $filePath;
+        // exit;
+        $this->userRepository->setPictureUrl($filePath, $id);
     }
 }

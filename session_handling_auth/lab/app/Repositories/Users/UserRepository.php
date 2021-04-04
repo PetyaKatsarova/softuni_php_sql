@@ -4,11 +4,9 @@ namespace Repositories\Users;
 use Data\Users\UserDTO;
 use Data\Users\UserEditDTO;
 use Database\DatabaseInterface;
-
 class UserRepository implements UserRepositoryInterface
 {
     private $db;
-
     /**
      * UserRepository constructor.
      * @param $db
@@ -17,7 +15,6 @@ class UserRepository implements UserRepositoryInterface
     {
         $this->db = $db;
     }
-
 
     public function getAll(): \Generator
     {
@@ -35,7 +32,7 @@ class UserRepository implements UserRepositoryInterface
         $user = $this->db->query("SELECT * FROM users2 WHERE username = ?")->execute([$username])->fetch();
         $user = $user->current();
 
-        return new UserDTO($user['id'], $user['username'], $user['password'], '', $user['profile_picture_url']);
+        return new UserDTO($user['id'], $user['username'], $user['PASSWORD'], '', $user['profile_picture_url']);
     }
 
     public function getById(int $id): UserDTO
@@ -43,7 +40,8 @@ class UserRepository implements UserRepositoryInterface
         $user = $this->db->query("SELECT * FROM users2 WHERE id = ?")->execute([$id])->fetch();
         $user = $user->current();
 
-        return new UserDTO($user['id'], $user['username'], $user['password'], '', $user['profile_picture_url']);
+        // deleted:
+        return new UserDTO($user['id'], $user['username'], $user['PASSWORD'], '', $user['profile_picture_url']);
     }
 
     public function edit(int $id, UserEditDTO $userEditDTO, bool $changePassword)
@@ -60,7 +58,7 @@ class UserRepository implements UserRepositoryInterface
         $this->db->query($query)->execute($params);
     }
 
-    public function setPictureUrl(int $id, string $filePath)
+    public function setPictureUrl(string $filePath,int $id)
     {
         $this->db->query("UPDATE users2 SET profile_picture_url = ? WHERE id = ?")
             ->execute([$filePath, $id]);

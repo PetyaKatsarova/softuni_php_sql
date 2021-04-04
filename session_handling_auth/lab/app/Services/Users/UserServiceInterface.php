@@ -5,9 +5,9 @@ namespace Services\Users;
 
 use Data\Users\UserDTO;
 use Data\Users\UserEditDTO;
-use Exception\User\EditProfileException;
-use Exception\User\RegistrationException;
-use Exception\User\UploadException;
+// use Exception\User\EditProfileException;
+// use Exception\User\RegistrationException;
+// use Exception\User\UploadException;
 
 interface UserServiceInterface
 {
@@ -23,11 +23,11 @@ interface UserServiceInterface
      * @param UserEditDTO $userDTO
      * @throws EditProfileException
      */
-    public function edit(int $id, UserEditDTO $userDTO): void;
+    // public function edit(int $id, UserEditDTO $userDTO): void;
 
     public function verifyCredentials(string $username, string $password): bool;
 
-    public function findByUsername(string $username): UserDTO;
+    // public function findByUsername(string $username): UserDTO;
 
     public function findOne(int $id): UserDTO;
 

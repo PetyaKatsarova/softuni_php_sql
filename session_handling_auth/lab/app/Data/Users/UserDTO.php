@@ -18,15 +18,14 @@ class UserDTO
      * @param $profilePictureUrl
      */
     // deleted temp $id from args
-    public function __construct( $username, $password, $confirmPassword, $profilePictureUrl = null)
+    public function __construct( $id,$username, $password, $confirmPassword, $profilePictureUrl = null)
     {
-        // $this->id = $id;
+        $this->id = $id;
         $this->username = $username;
         $this->password = $password;
         $this->confirmPassword = $confirmPassword;
         $this->profilePictureUrl = $profilePictureUrl;
     }
-
     /**
      * @return mixed
      */
@@ -42,7 +41,6 @@ class UserDTO
     {
         $this->id = $id;
     }
-
     /**
      * @return mixed
      */
@@ -50,7 +48,6 @@ class UserDTO
     {
         return $this->username;
     }
-
     /**
      * @param mixed $username
      */

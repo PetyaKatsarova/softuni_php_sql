@@ -13,3 +13,4 @@ $userService = new \Services\Users\UserService(
 );
 
 $user = $userService->findOne($id);
+

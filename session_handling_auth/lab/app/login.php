@@ -1,10 +1,10 @@
 <?php
-require_once 'index.php';
-// // require_once 'common.php';
-// echo "<form method='post' name='login'>
-//         Username: <input type='text' name='username' />
-//         Password: <input type='text' name='password' />
-//       </form>";
+// require_once 'index.php';
+// require_once 'common.php';
+require_once 'secure_common.php';
+
+// var_dump($_SERVER);
+// exit;
 
  $error = '';
 if (isset($_POST['login'])) {
@@ -16,11 +16,12 @@ if (isset($_POST['login'])) {
         new \Repositories\Users\UserRepository($db),
         new \Services\Encryption\MnogoTypEncryptioService()
     );
+    // var_dump($userService->verifyCredentials($username, $password));
 
     if ($userService->verifyCredentials($username, $password)) {
-        // $user = $userService->findByUsername($username);
-        // $_SESSION['id'] = $user->getId();
-        // header("Location: profile.php");
+        $user = $userService->findByUsername($username);
+        $_SESSION['id'] = $user->getId();
+        header("Location: profile.php");
         echo 'Successfully logged in.';
     } else {
         $error = 'Sorry, dude: Invalid username or password';

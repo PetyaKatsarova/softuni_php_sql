@@ -19,6 +19,8 @@ if (isset($_POST['edit'])) {
         } catch (\Exception\User\UploadException $e) {
             $errors[] = $e->getMessage();
         }
+        // var_dump($_FILES);
+        // exit;
     }
 
     try {

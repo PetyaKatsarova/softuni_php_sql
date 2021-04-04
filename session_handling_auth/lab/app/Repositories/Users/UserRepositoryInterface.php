@@ -18,5 +18,5 @@ interface UserRepositoryInterface
 
     public function edit(int $id, UserEditDTO $userEditDTO, bool $changePassword);
 
-    public function setPictureUrl(int $id, string $filePath);
+    public function setPictureUrl(string $filePath,int $id);
 }

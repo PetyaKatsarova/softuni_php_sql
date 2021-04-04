@@ -1,6 +1,6 @@
 <?php
-// require_once 'common.php';
-require_once 'index.php';
+require_once 'secure_common.php';
+// require_once 'index.php';
 
 $userService = new \Services\Users\UserService(
     new \Repositories\Users\UserRepository($db), 
@@ -22,14 +22,14 @@ if (isset($_POST['register'])) {
     $password = $_POST['password'];
     $confirm = $_POST['confirm'];
 
-    $userDTO = new \Data\Users\UserDTO($username, $password, $confirm);
+    $userDTO = new \Data\Users\UserDTO($id,$username, $password, $confirm);
 
     $userService = new \Services\Users\UserService(
         new \Repositories\Users\UserRepository($db),
         new \Services\Encryption\MnogoTypEncryptioService()
     );
 
-    $userDTO = new \Data\Users\UserDTO(-1, $username, $password, $confirm);
+    // $userDTO = new \Data\Users\UserDTO(-1, $username, $password, $confirm);
 
     try {
         $userService->register($userDTO);
