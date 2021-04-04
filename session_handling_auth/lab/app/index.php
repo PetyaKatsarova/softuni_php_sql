@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 spl_autoload_register(function($className){
     // in different systems, files have different dir-separators
    $className = str_replace("\\", DIRECTORY_SEPARATOR, $className);

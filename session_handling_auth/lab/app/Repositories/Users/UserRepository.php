@@ -21,18 +21,18 @@ class UserRepository implements UserRepositoryInterface
 
     public function getAll(): \Generator
     {
-        return $this->db->query("SELECT * FROM users")->execute()->fetch();
+        return $this->db->query("SELECT * FROM users2")->execute()->fetch();
     }
 
     public function register(UserDTO $userDTO)
     {
-        $this->db->query("INSERT INTO users (username, password) VALUES (?, ?)")
+        $this->db->query("INSERT INTO users2 (username, password) VALUES (?, ?)")
             ->execute([$userDTO->getUsername(), $userDTO->getPassword()]);
     }
 
     public function getByUsername(string $username): UserDTO
     {
-        $user = $this->db->query("SELECT * FROM users WHERE username = ?")->execute([$username])->fetch();
+        $user = $this->db->query("SELECT * FROM users2 WHERE username = ?")->execute([$username])->fetch();
         $user = $user->current();
 
         return new UserDTO($user['id'], $user['username'], $user['password'], '', $user['profile_picture_url']);
@@ -40,7 +40,7 @@ class UserRepository implements UserRepositoryInterface
 
     public function getById(int $id): UserDTO
     {
-        $user = $this->db->query("SELECT * FROM users WHERE id = ?")->execute([$id])->fetch();
+        $user = $this->db->query("SELECT * FROM users2 WHERE id = ?")->execute([$id])->fetch();
         $user = $user->current();
 
         return new UserDTO($user['id'], $user['username'], $user['password'], '', $user['profile_picture_url']);
@@ -48,7 +48,7 @@ class UserRepository implements UserRepositoryInterface
 
     public function edit(int $id, UserEditDTO $userEditDTO, bool $changePassword)
     {
-        $query = "UPDATE users SET username = ?";
+        $query = "UPDATE users2 SET username = ?";
         $params = [$userEditDTO->getUsername()];
         if ($changePassword) {
             $query .= ", password = ?";
@@ -62,7 +62,7 @@ class UserRepository implements UserRepositoryInterface
 
     public function setPictureUrl(int $id, string $filePath)
     {
-        $this->db->query("UPDATE users SET profile_picture_url = ? WHERE id = ?")
+        $this->db->query("UPDATE users2 SET profile_picture_url = ? WHERE id = ?")
             ->execute([$filePath, $id]);
     }
 }

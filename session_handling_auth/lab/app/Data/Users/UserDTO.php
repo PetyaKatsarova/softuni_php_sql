@@ -4,13 +4,9 @@ namespace Data\Users;
 class UserDTO
 {
     private $id;
-
     private $username;
-
     private $password;
-
     private $confirmPassword;
-
     private $profilePictureUrl;
 
     /**
@@ -21,9 +17,10 @@ class UserDTO
      * @param $confirmPassword
      * @param $profilePictureUrl
      */
-    public function __construct($id, $username, $password, $confirmPassword, $profilePictureUrl = null)
+    // deleted temp $id from args
+    public function __construct( $username, $password, $confirmPassword, $profilePictureUrl = null)
     {
-        $this->id = $id;
+        // $this->id = $id;
         $this->username = $username;
         $this->password = $password;
         $this->confirmPassword = $confirmPassword;

@@ -4,11 +4,8 @@ namespace Data\Users;
 class UserEditDTO
 {
     private $id;
-
     private $username;
-
     private $oldPassword;
-
     private $newPassword;
 
     /**
