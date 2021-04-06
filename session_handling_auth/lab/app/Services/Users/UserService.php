@@ -74,8 +74,6 @@ class UserService implements UserServiceInterface
     public function verifyCredentials(string $username, string $password): bool
     {
         $user = $this->userRepository->getByUsername($username);
-        echo "verifyCredentials: from userService<br/>";
-        var_dump($user);
         return $this->encryptionService->verify($password, $user->getPassword());
     }
 

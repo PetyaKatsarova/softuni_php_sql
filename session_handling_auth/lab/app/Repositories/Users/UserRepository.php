@@ -23,16 +23,21 @@ class UserRepository implements UserRepositoryInterface
 
     public function register(UserDTO $userDTO)
     {
-        $this->db->query("INSERT INTO users2 (username, password) VALUES (?, ?)")
+        $this->db->query("INSERT INTO users2 (username, PASSWORD) VALUES (?, ?)")
             ->execute([$userDTO->getUsername(), $userDTO->getPassword()]);
     }
 
     public function getByUsername(string $username): UserDTO
     {
         $user = $this->db->query("SELECT * FROM users2 WHERE username = ?")->execute([$username])->fetch();
+        // WHY IS THAT?
         $user = $user->current();
-
-        return new UserDTO($user['id'], $user['username'], $user['PASSWORD'], '', $user['profile_picture_url']);
+    
+        if($user['id']){
+            return new UserDTO($user['id'], $user['username'], $user['PASSWORD'], '', $user['profile_picture_url']);
+        }
+        echo "Wrong username";
+        return new UserDTO('', $user['username'], $user['PASSWORD'], '', $user['profile_picture_url']);
     }
 
     public function getById(int $id): UserDTO
@@ -40,7 +45,6 @@ class UserRepository implements UserRepositoryInterface
         $user = $this->db->query("SELECT * FROM users2 WHERE id = ?")->execute([$id])->fetch();
         $user = $user->current();
 
-        // deleted:
         return new UserDTO($user['id'], $user['username'], $user['PASSWORD'], '', $user['profile_picture_url']);
     }
 
@@ -49,7 +53,7 @@ class UserRepository implements UserRepositoryInterface
         $query = "UPDATE users2 SET username = ?";
         $params = [$userEditDTO->getUsername()];
         if ($changePassword) {
-            $query .= ", password = ?";
+            $query .= ", PASSWORD = ?";
             $params[] = $userEditDTO->getNewPassword();
         }
         $query .= " WHERE id = ?";

@@ -24,7 +24,8 @@ if (isset($_POST['login'])) {
         header("Location: profile.php");
         echo 'Successfully logged in.';
     } else {
-        $error = 'Sorry, dude: Invalid username or password';
+        // how to check for invalid username??
+        $error = 'Sorry, dude: Invalid password';
     }
 }
 

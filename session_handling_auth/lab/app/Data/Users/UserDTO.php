@@ -5,7 +5,7 @@ class UserDTO
 {
     private $id;
     private $username;
-    private $password;
+    private $PASSWORD;
     private $confirmPassword;
     private $profilePictureUrl;
 
@@ -13,16 +13,16 @@ class UserDTO
      * UserDTO constructor.
      * @param $id
      * @param $username
-     * @param $password
+     * @param $PASSWORD
      * @param $confirmPassword
      * @param $profilePictureUrl
      */
     // deleted temp $id from args
-    public function __construct( $id,$username, $password, $confirmPassword, $profilePictureUrl = null)
+    public function __construct( $id,$username, $PASSWORD, $confirmPassword, $profilePictureUrl = null)
     {
         $this->id = $id;
         $this->username = $username;
-        $this->password = $password;
+        $this->PASSWORD = $PASSWORD;
         $this->confirmPassword = $confirmPassword;
         $this->profilePictureUrl = $profilePictureUrl;
     }
@@ -61,15 +61,15 @@ class UserDTO
      */
     public function getPassword()
     {
-        return $this->password;
+        return $this->PASSWORD;
     }
 
     /**
-     * @param mixed $password
+     * @param mixed $PASSWORD
      */
-    public function setPassword($password): void
+    public function setPASSWORD($PASSWORD): void
     {
-        $this->password = $password;
+        $this->PASSWORD = $PASSWORD;
     }
 
     /**
