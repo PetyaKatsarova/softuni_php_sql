@@ -1,5 +1,4 @@
 <?php
-
 class UserDTO{
     private $username;
     private $PASSWORD;

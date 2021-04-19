@@ -16,14 +16,14 @@ class User
     */
     private $answers;
 
-    public function __construct(int $id, string $username, string $password, array $questions, array $answers)
-    {
-        $this->id = $id;
-        $this->username = $username;
-        $this->password = $password;
-        $this->questions = $questions;
-        $this->answers = $answers;
-    }
+    // public function __construct(int $id, string $username, string $password, array $questions, array $answers)
+    // {
+    //     $this->id = $id;
+    //     $this->username = $username;
+    //     $this->password = $password;
+    //     $this->questions = $questions;
+    //     $this->answers = $answers;
+    // }
     public function getId(){
         return $this->id;
     }
