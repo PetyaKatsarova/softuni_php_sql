@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>My Page</title>
+    </head>
+    <body>
+        <h3>REST APIs</h3>
+        <!-- <input type="text" id="username" /> -->
+        <button type="button" onclick="getData()">Get Data</button>
+
+        <script>
+            function getData(){
+                fetch('webservice.php')
+                .then(res=>res.json())
+                .then(data=>console.log(JSON.parse(data)));
+            }
+        </script>
+    </body>
+</html>

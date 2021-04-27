@@ -35,8 +35,8 @@ if(preg_match(pattern: "/^\/users$/",subject: $uri)){
         $stmt = $db->prepare("SELECT * FROM users2 WHERE id=?");
         $stmt->execute([$matches[1]]);
         //  returns array
-        // echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
-        echo json_encode($stmt->fetch(PDO::FETCH_ASSOC));
+     echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
+        // echo json_encode($stmt->fetch(PDO::FETCH_ASSOC));
         exit;
     }else if($_SERVER['REQUEST_METHOD'] === 'PUT'){
         // some code;
@@ -45,8 +45,8 @@ if(preg_match(pattern: "/^\/users$/",subject: $uri)){
         // if no user with $matches[1] id
         $stmt = $db->prepare("SELECT * FROM users2 WHERE id=?");
         $stmt->execute([$matches[1]]);
-        // if(empty($stmt->fetchAll(PDO::FETCH_ASSOC))){
-            if(empty($stmt->fetch(PDO::FETCH_ASSOC))){
+         if(empty($stmt->fetchAll(PDO::FETCH_ASSOC))){
+            // if(empty($stmt->fetch(PDO::FETCH_ASSOC))){
             http_response_code(404);
             exit;
         }

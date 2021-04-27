@@ -81,7 +81,7 @@ document.getElementById('add-user').onclick = ()=>{
          //!!!!!!!!!!!!!!!!!!!! second param in fetch with body and JSON.STRINGIFY
          fetch("http://localhost/softuni_php/restServicesAndAjax/lab/users", {
             'method': 'POST', 
-            'body': JSON.stringify({username, password})
+            'body': JSON.stringify({"username":username, "password":password})
          });
          document.getElementById("users").innerHTML = `New user was registered.`;
          document.getElementById("all-users").setAttribute('style', 'display:block');
