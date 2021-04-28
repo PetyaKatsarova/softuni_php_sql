@@ -1,4 +1,6 @@
 <?php
+namespace App\Data;
+
 class UserDTO{
     private $id;
     private $username;
@@ -25,17 +27,3 @@ class UserDTO{
         $this->PASSWORD = $PASSWORD;
     }
 }
-
-$pdo = new PDO(dsn:"mysql:host=localhost:3306;dbname=test",username:"root");
-$stmt = $pdo->prepare("SELECT * FROM users2");
-$stmt->execute();
-// to use USERDTO: INSTEAD OF fetchAll(..) use FETCHOBJECT(UserDTO::class)where userDTO ist the className
-$users2 = $stmt->fetchObject(UserDTO::class);
-
-// WE WORK WITH CLASS: NEED TO CALL THE METHODS!!
-while($row = $stmt->fetchObject(UserDTO::class)){
-    echo $row->getUsername() . " // " . $row->getId() . "</br>";
-    // print_r($row);
-}
-
-

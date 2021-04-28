@@ -6,9 +6,15 @@ spl_autoload_register(function($className) {
     require_once $className . '.php';
 });
 $pdo = new PDO("mysql:dbname=test;host=localhost:3306", "root");
-$user = $pdo->query("SELECT * FROM users2 WHERE id = 18")->fetchObject(Database\Data\Users\UserDTO::class);
+$db = new \Database\PDODatabase($pdo);
+$stmt = $db->query("SELECT * FROM users2 WHERE id = 18");
+$stmt->execute();
+$user = $stmt->fetch(Data\Users\UserDTO::class);
 
-var_dump($user);
+// it shows the 3rd person from the table ?? why
+foreach($user as $u){
+    echo $u['username'] . " // " . $u['id'];
+}
 
 // $pdo = new \PDO("mysql:dbname=test;host=localhost:3306", "root");
 // $db = new \Database\PDODatabase($pdo);
