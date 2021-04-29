@@ -1,5 +1,7 @@
 <?PHP
-include 'databaseconnection.php';
+
+$db = new PDO(dsn: "mysql:dbname=test;host=localhost", username:"root");
+
 // query =  zaiavka
 $result = $db->query("SELECT * FROM users2");
 //$users = $result->fetch_all(MYSQLI_ASSOC); this is new mysqli

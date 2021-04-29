@@ -1,4 +1,5 @@
 <?php
+
 // $uri = $_SERVER['REQUEST_URI'];
 
 // $self = explode("/", $_SERVER['PHP_SELF']);
@@ -46,7 +47,7 @@ if($params[0] == 'hello'){
 // var_dump($actionName);
 
 
-// i am not getting it......
+// i am not getting it......cb=calllback
 function route($regex, $cb){
     //  it looks the same for me?????????? replace /what with / ?????????
     $regex = str_replace('/', '\/', $regex);
