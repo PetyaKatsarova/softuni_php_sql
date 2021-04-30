@@ -9,6 +9,6 @@ class QuestionsController
     }
     public function answer($id)
     {
-        echo "u r answering the $id question";
+        echo "u r answering question $id";
     }
 }
