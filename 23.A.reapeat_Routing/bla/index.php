@@ -1,13 +1,20 @@
 <?php
 
 spl_autoload_register(function ($class){
-    require_once str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php';
+   $file = str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php';
+   if(file_exists($file)){
+      require_once $file;
+   }
  });
+
+$router = new \Routing\Router();
+
+require_once 'routes.php';
 
 $self = $_SERVER['PHP_SELF'];
 $junk = str_replace('/index.php', '', $self);//softuni_php/23.A.../bla
 
-// want to receive only the params i wrote without the file path
+// want to receive only the url code i wrote without the file path part
 $uri = str_replace($junk, '', $_SERVER['REQUEST_URI']);
 
 $uriInfo = explode('/', $uri);
@@ -18,9 +25,21 @@ $controllerName = array_shift($uriInfo);
 $fullControllerName = "Controller\\" . ucfirst($controllerName) . "Controller";
 
 $methodName = array_shift($uriInfo);
-$param = array_shift($uriInfo);
+
+// false s 2nd param is for the autoloader not to work and show this error
+if(!class_exists($fullControllerName) || !method_exists($fullControllerName, $methodName)){
+   if(!$router->invoke($uri, $_SERVER['REQUEST_METHOD'])){
+      http_response_code(response_code:404);
+      echo "<h2 style='color:lime;'>kuku lala 404 Class Not Found or no server req method</h2>";
+   }
+   exit;
+}
+
+// instead of writing all the long if else code bellow: 
 $controllerInstance = new $fullControllerName();
-call_user_func_array([$controllerInstance,$methodName, $param], $uriInfo);
+
+call_user_func_array([$controllerInstance, $methodName], $uriInfo);
+
 
 // use Controller\UsersController;
 // use Controller\QuestionsController;
@@ -41,4 +60,4 @@ call_user_func_array([$controllerInstance,$methodName, $param], $uriInfo);
 //     echo "No event handler found :)";
 // }
 ?>
-<script src="scripting/js/index.js"></script>
+<script src="Scripting/js/kuku.js"></script>
