@@ -2,7 +2,7 @@ document.getElementById("all-users").onclick = ()=>{
    fetch("http://localhost/softuni_php/restServicesAndAjax/lab/users")
    .then(res => res.json())
    .then(resUsers => {
-      // console.log(resUsers)
+       console.log(resUsers)
       let table = `
          <table border=1>
             <thead>
@@ -81,7 +81,7 @@ document.getElementById('add-user').onclick = ()=>{
          //!!!!!!!!!!!!!!!!!!!! second param in fetch with body and JSON.STRINGIFY
          fetch("http://localhost/softuni_php/restServicesAndAjax/lab/users", {
             'method': 'POST', 
-            'body': JSON.stringify({"username":username, "password":password})
+            'body': JSON.stringify({"username":username, "PASSWORD":password})
          });
          document.getElementById("users").innerHTML = `New user was registered.`;
          document.getElementById("all-users").setAttribute('style', 'display:block');

@@ -1,4 +1,5 @@
 <?php
+namespace Controllers;
 class Users
 {
    public function hello(string $firstName, string $lastName)

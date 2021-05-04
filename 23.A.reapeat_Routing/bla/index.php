@@ -60,4 +60,4 @@ call_user_func_array([$controllerInstance, $methodName], $uriInfo);
 //     echo "No event handler found :)";
 // }
 ?>
-<script src="Scripting/js/kuku.js"></script>
+<script src="Scripting/js/kuku.js">console.log('why')</script>
