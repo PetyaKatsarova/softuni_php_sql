@@ -13,5 +13,5 @@ $userService = new \Services\Users\UserService(
 );
 
 $user = $userService->findOne($id);
-var_dump($user);
+// var_dump($user);
 

@@ -17,8 +17,8 @@ class PDOResultSet implements ResultSetInterface
            yield $row;
        }
    }
-   public function fetch($className)
-   {
-       return $this->pdoStatement->fetchObject($className);
-   }
+//    public function fetch($className)
+//    {
+//        return $this->pdoStatement->fetchObject($className);
+//    }
 }

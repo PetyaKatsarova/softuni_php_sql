@@ -1,8 +1,8 @@
 document.getElementById("all-users").onclick = ()=>{
-   fetch("http://localhost/softuni_php/restServicesAndAjax/lab/users")
+   fetch("http://localhost/softuni_php/25.A.RepeatRestServicesAndAjax/users")
    .then(res => res.json())
    .then(resUsers => {
-       console.log(resUsers)
+      // console.log(resUsers)
       let table = `
          <table border=1>
             <thead>
@@ -34,10 +34,10 @@ document.getElementById("all-users").onclick = ()=>{
       for(let userInfo of userInfos){
          userInfo.onclick = (e)=>{
             let id = e.target.getAttribute('data-id');
-            fetch(`http://localhost/softuni_php/restServicesAndAjax/lab/users/${id}`)
+            fetch(`http://localhost/softuni_php/25.A.RepeatRestServicesAndAjax/users/${id}`)
             .then(res => res.json())
             .then(resUser => {
-               console.log(resUser)
+               // console.log(resUser)
                document.getElementById("users").innerHTML = `
                <ul>
                   <li>Id: ${resUser[0].id}</li>
@@ -79,7 +79,7 @@ document.getElementById('add-user').onclick = ()=>{
          document.getElementById('error').innerHTML = "<h3 style='color:tomato'>Password Mismatch</h3>";
       }else{
          //!!!!!!!!!!!!!!!!!!!! second param in fetch with body and JSON.STRINGIFY
-         fetch("http://localhost/softuni_php/restServicesAndAjax/lab/users", {
+         fetch("http://localhost/softuni_php/25.A.RepeatRestServicesAndAjax/users", {
             'method': 'POST', 
             'body': JSON.stringify({"username":username, "PASSWORD":password})
          });
@@ -90,8 +90,12 @@ document.getElementById('add-user').onclick = ()=>{
 }
 
 
-// instead of  xhr = new XMLHttpRequest(); xhr.open("GET", "") but fetch is asynch  
-// MAGIC!!!
+// // instead of  xhr = new XMLHttpRequest(); xhr.open("GET", "") but fetch is asynch  
+// // MAGIC!!!
+
+fetch("http://localhost/softuni_php/25.A.RepeatRestServicesAndAjax/users")
+.then(res=>res.json())
+.then(res=> console.log(res));
 
 
 

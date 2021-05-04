@@ -31,14 +31,29 @@ if(preg_match("/^\/users$/", $uri, $matches)){
         $stmt->execute([$matches[1]]);
         echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
         exit;
+    }else if($_SERVER['REQUEST_METHOD'] === 'POST'){
+
+        $requestPayload = file_get_contents('php://input', 'r');
+        $user = json_decode($requestPayload, true);
+        $stmt = $db->prepare("INSERT INTO users2 (username, PASSWORD) VALUES(?,?)");
+        $res = $stmt->execute([$user['username'], $user['PASSWORD']]);
+        if($res){
+            http_response_code(201);
+            echo json_encode(array_merge(['id'=>$db->lastInsertId()], $user));
+            exit;
+        }else{
+            http_response_code(400);
+            exit;
+        }
+
     }else if($_SERVER['REQUEST_METHOD'] === 'PATCH'){
-        // $stmt = $db->prepare("SELECT * FROM users WHERE id = ?");
-        // $stmt->execute([$matches[1]]);
+        $stmt = $db->prepare("SELECT * FROM users WHERE id = ?");
+        $stmt->execute([$matches[1]]);
         
-        // if(empty($stmt->fetch(PDO::FETCH_ASSOC))){
-        //     http_response_code(404);
-        //     exit;
-        // }
+        if(empty($stmt->fetch(PDO::FETCH_ASSOC))){
+            http_response_code(404);
+            exit;
+        }
 
         $requestPayload = file_get_contents("php://input", 'r');
         $user = json_decode($requestPayload, true);
@@ -67,5 +82,5 @@ if(preg_match("/^\/users$/", $uri, $matches)){
         exit;
     }
 }else{
-    var_dump('else');
+    echo 'else';
 }

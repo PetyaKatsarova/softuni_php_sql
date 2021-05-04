@@ -12,6 +12,7 @@ username.onkeyup = function (e){
       submit.removeAttribute("disabled")
    }
 }
+username.onchange = function(e){console.log(e.target)};
 
 // setTimeout(()=>{
 //    document.body.innerHTML += "<h1>chushki</h1>";
