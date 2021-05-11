@@ -17,5 +17,6 @@ $uriInfo = explode('/', $uri);
 $controllerName = array_shift($uriInfo);
 $methodName = array_shift($uriInfo);
 
-$app = new \Core\Application($controllerName, $methodName, $uriInfo,$uri, $_SERVER, $router);
+$mvc = new \Core\MvcContext($controllerName, $methodName, $uriInfo);
+$app = new \Core\Application($mvc, $uri, $_SERVER, $router);
 $app->start();

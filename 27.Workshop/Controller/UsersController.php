@@ -1,15 +1,18 @@
 <?php
 namespace Controller;
 
+use ViewEngine\ViewInterface;
+
 class UsersController
 {
     public function register()
     {
         echo "this is register func.";
     }
-    public function login()
+    public function login($id, $name, ViewInterface $view)
     {
-        echo "login func here";
+        // echo "login with id $id here with name $name";
+        $view->render();
     }
     public function profile()
     {
